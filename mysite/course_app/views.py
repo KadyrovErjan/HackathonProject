@@ -1,7 +1,7 @@
 from .serializers import *
 from .models import *
 from .permissions import UserEdit
-# from .filters import HouseFilter
+from .filters import CourseFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework import status, generics, permissions
@@ -53,6 +53,9 @@ class UserProfileDetailAPIView(generics.RetrieveAPIView):
 class CourseListAPIView(generics.ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseListSerializer()
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_class = CourseFilter
+    search_fields = ['course_name']
 
 class CourseDetailAPIView(generics.ListAPIView):
     queryset = Course.objects.all()
