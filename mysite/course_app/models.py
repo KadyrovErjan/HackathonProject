@@ -57,6 +57,7 @@ class Assignment(models.Model):
         ('тест', 'тест'),
         ('файл', 'файл'),
     )
+    type = models.CharField(max_length=32, choices=type_choices)
     is_active = models.BooleanField(default=False)
 
 class Question(models.Model):
@@ -86,7 +87,7 @@ class Certificate(models.Model):
     certificate_url = models.URLField()
 
     def __str__(self):
-        return f'{self.student.username} - {self.course.title}'
+        return f'{self.student.username} - {self.course.course_name}'
 
 class Review(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='reviews')
