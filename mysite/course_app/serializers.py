@@ -87,11 +87,35 @@ class LogoutSerializer(serializers.Serializer):
             raise serializers.ValidationError({"refresh": "Невалидный токен"})
         return attrs
 
+class StrikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Strike
+        fields = ("date", "is_active")
 
 class UserProfileListSerializer(serializers.ModelSerializer):
+    total_strikes = serializers.SerializerMethodField()
+    active_days = serializers.SerializerMethodField()
+    last_strike = serializers.SerializerMethodField()
+    strike_history = StrikeSerializer(source="strikes", many=True)
+
     class Meta:
         model = UserProfile
-        fields = ['id', 'username']
+        fields =[
+            "id", "username", "full_name",
+            "total_strikes", "active_days", "last_strike", "strike_history"
+        ]
+
+
+
+    def get_total_strikes(self, obj):
+        return obj.strikes.count()
+
+    def get_active_days(self, obj):
+        return obj.strikes.filter(is_active=True).count()
+
+    def get_last_strike(self, obj):
+        last = obj.strikes.order_by('-date').first()
+        return last.date if last else None
 
 class UserProfileDetailSerializer(serializers.ModelSerializer):
     class Meta:

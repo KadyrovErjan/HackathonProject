@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'course_app',
     'rest_framework_swagger',
     'rest_framework',
-    # 'drf_yasg',
-    # 'django_filters',
-    # 'rest_framework_simplejwt',
-    # 'rest_framework_simplejwt.token_blacklist'
+    'drf_yasg',
+    'django_filters',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist'
 
 
 ]
@@ -152,14 +152,14 @@ REST_FRAMEWORK = {
 
 
 
-# SIMPLE_JWT = {
-#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=300),
-#     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-#     "ROTATE_REFRESH_TOKENS": True,
-#     "BLACKLIST_AFTER_ROTATION": True,
-#     'AUTH_HEADER_TYPES': ('Bearer',),
-#     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-#     'TOKEN_BLACKLIST_ENABLED': True,
-#
-#
-# }
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=300),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_BLACKLIST_ENABLED': True,
+
+
+}

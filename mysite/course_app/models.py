@@ -97,3 +97,15 @@ class Review(models.Model):
 
     def __str__(self):
         return f'{self.user}'
+
+class Strike(models.Model):
+    student = models.ForeignKey(UserProfile, related_name="strikes",on_delete=models.CASCADE)
+    date = models.DateField()
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = ('student', 'date')
+        ordering = ['-date']
+
+    def __str__(self):
+        return f"{self.student.username} - {self.date} - {'Active' if self.is_active else 'Inactive'}"
