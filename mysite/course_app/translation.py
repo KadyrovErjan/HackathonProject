@@ -1,10 +1,35 @@
-'''from .models import Product
+from .models import *
 from modeltranslation.translator import TranslationOptions,register
 
-@register(Product)
-class ProductTranslationOptions(TranslationOptions):
-    fields = ('title', 'description')(example)
-'''
+@register(Category)
+class CategoryTranslationOptions(TranslationOptions):
+    fields = ('category_name', )
+
+
+@register(Course)
+class CourseTranslationOptions(TranslationOptions):
+    fields = ('course_name', 'description')
+
+
+@register(Lesson)
+class LessonTranslationOptions(TranslationOptions):
+    fields = ('title', 'content' )
+
+
+@register(Assignment)
+class AssignmentTranslationOptions(TranslationOptions):
+    fields = ('title', )
+
+
+@register(Question)
+class QuestionTranslationOptions(TranslationOptions):
+    fields = ('text', 'name_question')
+
+
+@register(Exam)
+class ExamTranslationOptions(TranslationOptions):
+    fields = ('title', 'questions')
+
 
 
 '''from django.contrib import admin

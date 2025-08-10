@@ -74,11 +74,11 @@ class Answers(models.Model):
     true_answers = models.BooleanField(default=False)
 
 class Exam(models.Model):
-    title: models.CharField(max_length=32)
-    course: models.ForeignKey(Course, on_delete=models.CASCADE)
-    questions: models.TextField()
-    passing_score: PositiveSmallIntegerField()
-    is_active= models.BooleanField(default=True)
+    title = models.CharField(max_length=32)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    questions = models.TextField()
+    passing_score = PositiveSmallIntegerField()
+    is_active = models.BooleanField(default=True)
 
 class Certificate(models.Model):
     student = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
